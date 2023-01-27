@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./UpdateProfile.scss";
-import userImg from "../../assets/user.png";
+import dummyUserImg from "../../assets/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMyProfile } from "../../redux/slices/appConfigSlice";
 
@@ -14,7 +14,7 @@ function UpdateProfile() {
   useEffect(() => {
     setName(myProfile?.name || "");
     setBio(myProfile?.bio || "");
-    setUserImg(myProfile?.avatar?.url || "");
+    setUserImg(myProfile?.avatar?.url);
   }, [myProfile]);
 
   function handleImageChange(e) {
@@ -46,7 +46,7 @@ function UpdateProfile() {
         <div className="left-part">
           <div className="input-user-img">
             <label htmlFor="inputImg" className="labelImg">
-              <img src={userImg} alt={name} />
+              <img src={userImg ? userImg : dummyUserImg} alt={name} />
             </label>
             <input
               className="inputImg"
